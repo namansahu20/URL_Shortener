@@ -1,0 +1,19 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api")
+public class UrlShortenerController {
+    @Autowired
+    private UrlShortenerService urlShortenerService;
+
+    @PostMapping("/shorten")
+    public String shortenUrl(@RequestBody String longUrl) {
+        return urlShortenerService.shortenUrl(longUrl);
+    }
+
+    @GetMapping("/{shortCode}")
+    public String expandUrl(@PathVariable String shortCode) {
+        return urlShortenerService.expandUrl(shortCode);
+    }
+}

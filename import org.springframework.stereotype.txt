@@ -1,0 +1,17 @@
+import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Repository
+public class UrlShortenerRepository {
+    private Map<String, String> urlMap = new HashMap<>();
+
+    public void save(String shortCode, String longUrl) {
+        urlMap.put(shortCode, longUrl);
+    }
+
+    public String findByShortCode(String shortCode) {
+        return urlMap.get(shortCode);
+    }
+}

@@ -1,0 +1,23 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UrlShortenerService {
+    @Autowired
+    private UrlShortenerRepository urlShortenerRepository;
+
+    public String shortenUrl(String longUrl) {
+        String shortCode = generateShortCode();
+        urlShortenerRepository.save(shortCode, longUrl);
+        return shortCode;
+    }
+
+    public String expandUrl(String shortCode) {
+        return urlShortenerRepository.findByShortCode(shortCode);
+    }
+
+    private String generateShortCode() {
+        // Generate a short code using some logic
+        return "abc123"; // Placeholder value
+    }
+}
